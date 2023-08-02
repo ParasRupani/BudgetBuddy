@@ -1,0 +1,121 @@
+{% extends 'layout.html' %}
+
+
+
+{% block main %}
+
+    <div class="settings">
+        <table class="table table-borderless">
+            <tr>
+                <td class="currency"><b>Currency:</b></td>
+                <td class="cur_btn">
+                    <form action="/update_currency" method="post">
+                        <div class="input-group">
+                            <select class="form-select" name="currency">
+                                <option disabled="" selected="">{{ currency }}</option>
+                                <option value="$">USD ($)</option>
+                                <option value="€">Euro (€)</option>
+                                <option value="¥">Yen (¥)</option>
+                                <option value="£">Pound (£)</option>
+                                <option value="₹">Rupee (₹)</option>
+                            </select>
+                            <button type="submit" class="btn btn-primary">✓</button>
+                        </div>
+                    </form>
+                </td>
+            
+
+            
+                <td class="budget"><b>Update Budget:</b></td>
+                <td>
+                    <form action="/update_budget" method="post">
+                        <div class="input-group">
+                            <input type="number" class="form-control" id="amount" name="new-budget-amount" step="0.01" placeholder="{{ budget.amount }}" required>
+                            <button type="submit" class="btn btn-primary">✓</button>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+            </tr><tr>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td class="username"><b>Username:</b></td>
+                <td>
+                    <form action="/update_username" method="post">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="username" name="username" placeholder="{{ session['username'] }}" required>
+                            <button type="submit" class="btn btn-primary">✓</button>
+                        </div>
+                    </form>
+                </td>
+            
+
+            
+                
+                    <td class="greeting"><b>Greeting:</b></td>
+                    <td>
+                        <form action="/greeting" method="post">
+                            <div class="input-group">
+                                <input type="text" class="form-control" style="max-width: 300px; margin-left: -100px;" id="greeting" name="greeting" placeholder="{{greeting}}" >
+                                <button type="submit" class="btn btn-primary">✓</button>
+                            </div>
+                        </form>
+                    </td>
+                
+            </tr>
+
+            <tr>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td class="pass"><b>New Password:</b></td>
+                <td>
+                    <form action="/update_password" method="post">
+                        <div class="input-group">
+                            <input type="password" class="form-control pass" id="password" name="password" placeholder="New Password" required>
+                        </div>
+                    
+                </td>
+            </tr>
+            
+            <tr>
+                <td class="pass"><b>Confirm Password:</b></td>
+                <td>                   
+                        <div class="input-group">
+                            <input type="password" class="form-control confirm" id="confirmation" name="confirmation" placeholder="Re-Enter" required>
+                            <button type="submit" class="btn btn-primary">✓</button>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+            
+            <tr><td></td></tr>
+            <tr><td></td></tr>
+            <tr><td></td></tr>
+            <tr><td></td></tr>
+            <tr><td></td></tr>
+
+            <tr>                
+                <td>
+                    <form action="/reset_budget" method="post">
+                        <div>
+                            <h4><b>Reset BudgetBuddy</b></h4></td> <td><button style="background-color: red;" type="submit" class="btn btn-primary ">Confirm</button></td>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+{% endblock %}

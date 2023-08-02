@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+
+
+
+{% block main %}
+    <div class="transactions">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Type</th>
+                <th>Category</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transaction in transactions %}
+                {% if transaction.type == 'Expense' %}
+                    <tr class="table-danger text-white">
+                {% else %}
+                    <tr class="table-success text-white">
+                {% endif %}
+                
+                    <td>{{ transaction.date }}</td>
+                    <td>{{ transaction.currency}} {{ transaction.amount }}</td>
+                    <td>{{ transaction.type }}</td>
+                    <td>{{ transaction.category }}</td>
+                    <td>
+                        <a href="/transactions?edit={{ transaction.transaction_id }}" class="btn btn-primary btn-sm">Edit</a>
+                        <a href="/transactions?delete={{ transaction.transaction_id }}" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

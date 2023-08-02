@@ -1,0 +1,76 @@
+{% extends 'layout.html' %}
+
+
+
+{% block main %}
+
+
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-auto">
+            
+            <div class="row">
+                <div class="col-md-6 cutom-border-end" style="border-right: 2px solid grey;">
+                    <h3><b>Incomes</b></h3>
+                    <ul class="list-unstyled">
+                        {% for category in categories %}
+                            {% if category.type == 'Income' %}
+                                <li><h5>{{ category.name }}</h5></li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h3><b>Expenses</b></h3>
+                    <ul class="list-unstyled">
+                        {% for category in categories %}
+                            {% if category.type == 'Expense' %}
+                                <li><h5>{{ category.name }}</h5></li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        
+        
+        <div class="col-auto">
+            <h3><b>Create a New Category:</b></h3>
+                <form action="/categories" method="post">
+                    <div class="mb-3 row">
+                        <div class="col-auto">
+                            <label for="category" class="form-label"><h5>Category Name:</h5></label>
+                        </div>
+                        <div class="col-auto">
+                            <input type="text" class="form-control" id="add-category" name="add-category" required>
+                        </div>
+                        <div class="col-auto">
+                            <select class="mb-4 form-select mx-auto w-auto" name="type" id="transactionType" required>
+                                <option disabled="" selected="">Type</option>
+                                <option value="Expense" name="add-type">Expense</option>
+                                <option value="Income" name="add-type">Income</option>
+                            </select>
+                        </div> 
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-primary">Add Category</button>
+                        </div> 
+                             
+                    </div>       
+                </form>
+        </div>
+    </div>
+    
+    
+</div>
+
+<style>
+    .border-end{
+    border-right: 5px solid #333;
+}
+</style>
+
+{% endblock %}

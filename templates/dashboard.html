@@ -1,0 +1,131 @@
+{% extends "layout.html" %}
+
+
+
+{% block main %}
+<div class="dashboard">
+    <div class="alert">        
+        
+        <h1><b>{{greeting}} {{ session["username"].title() }}</b></h1> 
+        <br> 
+
+        
+        {% if budget %}
+        <div class="dash-budget">
+            <table class="table table-borderless">
+                <tbody>
+                    
+                    <tr>
+                        <td><h5><b>Budget:</h5></b></td>
+                        <td><h5><b>{{ currency }} {{ budget.amount }}</h5></b></td>
+                    </tr>
+                    <tr>
+                        <td style="color: red;"><h5><b>Remaining:</b></h5></td>
+                        <td style="color: red;"><h5><b>{{ currency }} {{ budget.remaining }}</h5></b></td>
+                    </tr>
+                    </b>
+                </tbody>
+            </table>
+        </div>
+        {% endif %}         
+    </div>
+    
+    <div class="container2">
+        <div>
+            {% if not budget or budget.amount == 0 %}
+                <h3>Set Your Initial Budget!</h3>
+                <form action="/dashboard" method="post">
+                    <div class="mb-3 row">
+                        <div class="col-auto">
+                            <label for="amount" class="form-label">Total Budget:</label>
+                        </div>
+
+                        <div class="col-auto">
+                            <input type="number" class="input-group-text col-auto mx-auto w-auto" id="amount" name="amount" step="0.01" required >
+                        </div>
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-primary">Set Budget</button>
+                        </div>
+                    </div>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if alloted != 0 and budget %}
+    <div class="dash-transactions">
+        <div>
+            <h3>Create a New Transaction:</h3>
+            <form action="/transactions" method="post">
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col-auto">
+                            <label for="date" class="form-label">Date:</label>
+                        </div>
+                        <div class="col-auto">
+                            <input type="date"  class="input-group-text" id="date" name="date" required>
+                        </div>
+                        <div class="col-auto">
+                            <input type="number" placeholder="Amount" class="input-group-text" id="amount" name="amount" step="0.01" required min="0">
+                        </div>
+                        <div class="col-auto">
+                            <select class="mb-4 form-select mx-auto w-auto" name="type" id="transactionType">
+                                <option disabled="" selected="">Type</option>
+                                <option value="Expense">Expense</option>
+                                <option value="Income">Income</option>
+                            </select>
+                        </div>                   
+                        <div class="col-auto">
+                            <select class="mb-4 form-select mx-auto w-auto" name="category" id="categorySelect">
+                                <option disabled="" selected="">Category</option>
+                                {% for category in categories %}
+                                    {% if category.type == 'Expense' %}
+                                        <option class="expense" value="{{ category.name }}">{{ category.name }}</option>
+                                    {% else %}
+                                        <option class="income" value="{{ category.name }}">{{ category.name }}</option>
+                                    {% endif %} 
+                                {% endfor %}
+                            </select>
+                        </div>
+                                                           
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>                
+                </div>
+            </form>
+        </div>
+<br>
+        <div class="recent-trans">
+            <h3>Recent Transactions:</h3>
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Type</th>
+                        <th>Category</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for transaction in transactions %}
+                        {% if transaction.type == 'Expense' %}
+                            <tr class="table-danger text-white">
+                        {% else %}
+                            <tr class="table-success text-white">
+                        {% endif %}
+                                <td>{{ transaction.date }}</td>
+                                <td>{{ transaction.currency }} {{ transaction.amount }}</td>
+                                <td>{{ transaction.type }}</td>
+                                <td>{{ transaction.category }}</td>
+                            </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<script type="text/javascript" src="/static/script.js"></script>
+{% endblock %}

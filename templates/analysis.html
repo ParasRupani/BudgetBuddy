@@ -1,0 +1,64 @@
+{% extends 'layout.html' %}
+
+
+
+{% block main %}
+
+    <div class="analysis">
+
+        
+        
+        <div class="budget-analysis">
+            <table class="table table-borderless">
+                <tbody>
+                    {% if budget %}
+                        <tr>
+                            <th><h4><b>Budget:</b></h4></th>
+                        </tr>
+                        <tr>
+                            <td>Total Budget:</td>
+                            <td>{{ budget.amount }} {{ budget.currency }}</td>
+                        </tr>
+                        <tr>
+                            <td>Remaining Budget:</td>
+                            <td>{{ remaining_budget }} {{ budget.currency }}</td>
+                        </tr>
+                        <tr>
+                            <td>Budget Used:</td>
+                            <td>{{ budget_used_percentage }}%</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td>No budget set.</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        
+            <br>
+        
+            <div class="trans-analysis">
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <th><h4><b>Transactions:</b></h4></th>
+                        </tr>
+                        <tr>
+                            <td>Total Expenses:</td>
+                            <td>{{ total_expenses }} {{ budget.currency }}</td>
+                        </tr>
+                        <tr>
+                            <td>Total Income:</td>
+                            <td>{{ total_income }} {{ budget.currency }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        {% if expense_category_names and expense_category_amounts %}
+            <img src="{{ url_for('static', filename='pie_chart.png') }}" alt="Expense Categories Pie Chart">
+        {% endif %}
+
+    </div>
+{% endblock %}
