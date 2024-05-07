@@ -4,6 +4,8 @@ Video: <https://youtu.be/VomclQsMnxc>
 
 ![Budget Buddgy Demo](https://github.com/ParasRupani/budget-buddy/blob/main/Budget-Buddy-Demo.png)
 
+![Budget Buddy Analysis](https://github.com/ParasRupani/budget-buddy/blob/main/Budget-Buddy-Demo-Analysis.png)
+
 ### Description:
 
 The idea of developing an expense tracker was of interest to me as I was looking for various available tools to help me with this and I did find a few but they were not appealing to me, so I decided to make my own which I can incorporate in my daily life and benefit from it.
