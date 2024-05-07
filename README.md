@@ -2,7 +2,7 @@
 ## Demo:
 Video: <https://youtu.be/VomclQsMnxc>
 
-[Budget Buddgy Demo](https://github.com/ParasRupani/budget-buddy/blob/main/Budget-Buddy-Demo.png)
+![Budget Buddgy Demo](https://github.com/ParasRupani/budget-buddy/blob/main/Budget-Buddy-Demo.png)
 
 ### Description:
 
